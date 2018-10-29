@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Customer
+    class Pitcher
     {
-
     }
 }
