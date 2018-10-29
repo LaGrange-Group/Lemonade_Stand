@@ -8,5 +8,12 @@ namespace LemonadeStand
 {
     class Day
     {
+        Weather weather;
+        Customer customer;
+
+        public Day()
+        {
+            weather = new Weather();
+        }
     }
 }
