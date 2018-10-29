@@ -8,12 +8,12 @@ namespace LemonadeStand
 {
     class Player
     {
-        private Wallet wallet;
+        public Wallet wallet;
         private Pitcher pitcher;
-        private Inventory lemons;
-        private Inventory sugar;
-        private Inventory ice;
-        private Inventory cups;
+        public Inventory lemons;
+        public Inventory sugar;
+        public Inventory ice;
+        public Inventory cups;
         private List<Inventory> inventory;
         private string name;
 

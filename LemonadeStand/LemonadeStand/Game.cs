@@ -18,5 +18,9 @@ namespace LemonadeStand
             player = new Player();
             store = new Store();
         }
+        public void StartGame()
+        {
+
+        }
     }
 }

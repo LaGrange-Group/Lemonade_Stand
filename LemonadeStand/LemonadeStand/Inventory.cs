@@ -8,5 +8,14 @@ namespace LemonadeStand
 {
     public abstract class Inventory
     {
+        protected int amount;
+        public Inventory()
+        {
+            amount = 0;
+        }
+        public void IncramentInventory(int newAmount)
+        {
+            amount += newAmount;
+        }
     }
 }

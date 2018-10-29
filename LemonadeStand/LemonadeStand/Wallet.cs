@@ -13,9 +13,25 @@ namespace LemonadeStand
         {
             money = 20;
         }
-        private void IncramentMoney(int cost)
+        public void IncramentMoney(int cost)
         {
             money += cost;
+        }
+        public void DecrementMoney(int amount)
+        {
+            money -= amount;
+        }
+        public bool CheckIfEnoughMoney(int amount)
+        {
+            if (money < amount)
+            {
+                Console.WriteLine("\nI'm sorry, you dont have enough money for this!");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
