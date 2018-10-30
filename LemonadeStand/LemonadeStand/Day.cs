@@ -8,13 +8,28 @@ namespace LemonadeStand
 {
     class Day
     {
-        Weather weather;
-        Customer customer;
+        private Weather weather;
+        private Customer customer;
+        private Random random;
+        private Recipe recipe;
+        private Pitcher pitcher;
 
-        public Day()
+
+        public Day(Recipe recipe, Pitcher pitcher)
         {
+            this.recipe = recipe;
+            this.pitcher = pitcher;
             weather = new Weather();
-            customer = new Customer();
+            random = new Random();
+        }
+
+        public void DailyCustomers()
+        {
+            int amountOfCustomers = random.Next(30, 150);
+            int i = 0;
+            while (i < amountOfCustomers){
+                Customer customer = new Customer(weather, );
+            }
         }
     }
 }

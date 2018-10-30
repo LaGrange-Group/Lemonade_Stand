@@ -9,8 +9,8 @@ namespace LemonadeStand
     class Player
     {
         public Wallet wallet;
-        private Pitcher pitcher;
-        private Recipe recipe;
+        public Pitcher pitcher;
+        public Recipe recipe;
         public Inventory lemons;
         public Inventory sugar;
         public Inventory ice;

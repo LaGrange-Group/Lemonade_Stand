@@ -11,21 +11,21 @@ namespace LemonadeStand
         private int lemons;
         private int sugar;
         private int ice;
-        public int Lemons
+        public int LemonsGet
         {
             get
             {
                 return lemons;
             }
         }
-        public int Sugar
+        public int SugarGet
         {
             get
             {
                 return sugar;
             }
         }
-        public int Ice
+        public int IceGet
         {
             get
             {
