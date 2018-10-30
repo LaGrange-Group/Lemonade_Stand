@@ -13,43 +13,43 @@ namespace LemonadeStand
         {
             this.player = player;
         }
-        public void EnterStore(Game game)
+        public void EnterStore()
         {
             Console.Clear();
             Console.WriteLine("Welcome to the store!");
-            StoreCatalog(0, game);
+            StoreCatalog(0);
         }
-        private void StoreCatalog(int iter, Game game)
+        private void StoreCatalog(int iter)
         {
             Console.Clear();
-            game.DisplayInventory();
+            UI.DisplayInventory(player);
             Console.WriteLine("\nTo view price and amounts of an item enter their relative number index. \n(1) Lemons \n(2) Sugar \n(3) Ice \n(4) Cups\n(5) Finished with the store!");
             switch (Convert.ToInt32(Console.ReadLine()))
             {
                 case 1:
-                    Lemons(game);
+                    Lemons();
                     break;
                 case 2:
-                    Sugar(game);
+                    Sugar();
                     break;
                 case 3:
-                    Ice(game);
+                    Ice();
                     break;
                 case 4:
-                    Cups(game);
+                    Cups();
                     break;
                 case 5:
                     return;
                 default:
                     Console.WriteLine("You have entered an invalid input. Please try again.");
-                    StoreCatalog(1, game);
+                    StoreCatalog(1);
                     return;
             }
         }
-        private void Lemons(Game game)
+        private void Lemons()
         {
             Console.Clear();
-            game.DisplayInventory();
+            UI.DisplayInventory(player);
             Console.WriteLine("\n--Lemons--\n(1) 8 Lemons Cost: $ 8.00\n(2) 16 Lemons Cost: $ 15.00\n(3) 32 Lemons Cost: $29\n(4) Go Back ");
             switch (Convert.ToInt32(Console.ReadLine()))
             {
@@ -58,12 +58,12 @@ namespace LemonadeStand
                     {
                         player.wallet.DecrementMoney(8);
                         player.lemons.IncramentInventory(8);
-                        Lemons(game);
+                        Lemons();
                         return;
                     }
                     else
                     {
-                        StoreCatalog(1, game);
+                        StoreCatalog(1);
                     }
                     break;
                 case 2:
@@ -71,12 +71,12 @@ namespace LemonadeStand
                     {
                         player.wallet.DecrementMoney(15);
                         player.lemons.IncramentInventory(16);
-                        Lemons(game);
+                        Lemons();
                         return;
                     }
                     else
                     {
-                        StoreCatalog(1, game);
+                        StoreCatalog(1);
                     }
                     break;
                 case 3:
@@ -84,27 +84,27 @@ namespace LemonadeStand
                     {
                         player.wallet.DecrementMoney(29);
                         player.lemons.IncramentInventory(32);
-                        Lemons(game);
+                        Lemons();
                         return;
                     }
                     else
                     {
-                        StoreCatalog(1, game);
+                        StoreCatalog(1);
                     }
                     break;
                 case 4:
-                    StoreCatalog(1, game);
+                    StoreCatalog(1);
                     return;
                 default:
                     Console.WriteLine("You have entered an invalid input. Please try again.");
-                    Lemons(game);
+                    Lemons();
                     return;
             }
         }
-        private void Ice(Game game)
+        private void Ice()
         {
             Console.Clear();
-            game.DisplayInventory();
+            UI.DisplayInventory(player);
             Console.WriteLine("\n--Ice--\n(1) 50 Pieces of Ice Cost: $ 3.00\n(2) 100 Pieces of Ice Cost: $ 6.00\n(3) 200 Pieces of Ice Cost: $10\n(4) Go Back");
             switch (Convert.ToInt32(Console.ReadLine()))
             {
@@ -113,12 +113,12 @@ namespace LemonadeStand
                     {
                         player.wallet.DecrementMoney(3);
                         player.ice.IncramentInventory(50);
-                        Ice(game);
+                        Ice();
                         return;
                     }
                     else
                     {
-                        StoreCatalog(1, game);
+                        StoreCatalog(1);
                     }
                     break;
                 case 2:
@@ -126,12 +126,12 @@ namespace LemonadeStand
                     {
                         player.wallet.DecrementMoney(6);
                         player.ice.IncramentInventory(100);
-                        Ice(game);
+                        Ice();
                         return;
                     }
                     else
                     {
-                        StoreCatalog(1, game);
+                        StoreCatalog(1);
                     }
                     break;
                 case 3:
@@ -139,27 +139,27 @@ namespace LemonadeStand
                     {
                         player.wallet.DecrementMoney(10);
                         player.ice.IncramentInventory(200);
-                        Ice(game);
+                        Ice();
                         return;
                     }
                     else
                     {
-                        StoreCatalog(1, game);
+                        StoreCatalog(1);
                     }
                     break;
                 case 4:
-                    StoreCatalog(1, game);
+                    StoreCatalog(1);
                     return;
                 default:
                     Console.WriteLine("You have entered an invalid input. Please try again.");
-                    Ice(game);
+                    Ice();
                     return;
             }
         }
-        private void Cups(Game game)
+        private void Cups()
         {
             Console.Clear();
-            game.DisplayInventory();
+            UI.DisplayInventory(player);
             Console.WriteLine("\n--Cups--\n(1) 20 Cups Cost: $ 3.00\n(2) 40 Cups Cost: $ 5.00\n(3) 100 Cups Cost: $10\n(4) Go Back");
             switch (Convert.ToInt32(Console.ReadLine()))
             {
@@ -168,12 +168,12 @@ namespace LemonadeStand
                     {
                         player.wallet.DecrementMoney(3);
                         player.cups.IncramentInventory(20);
-                        Cups(game);
+                        Cups();
                         return;
                     }
                     else
                     {
-                        StoreCatalog(1, game);
+                        StoreCatalog(1);
                     }
                     break;
                 case 2:
@@ -181,12 +181,12 @@ namespace LemonadeStand
                     {
                         player.wallet.DecrementMoney(5);
                         player.cups.IncramentInventory(40);
-                        Cups(game);
+                        Cups();
                         return;
                     }
                     else
                     {
-                        StoreCatalog(1, game);
+                        StoreCatalog(1);
                     }
                     break;
                 case 3:
@@ -194,27 +194,27 @@ namespace LemonadeStand
                     {
                         player.wallet.DecrementMoney(10);
                         player.cups.IncramentInventory(100);
-                        Cups(game);
+                        Cups();
                         return;
                     }
                     else
                     {
-                        StoreCatalog(1, game);
+                        StoreCatalog(1);
                     }
                     break;
                 case 4:
-                    StoreCatalog(1, game);
+                    StoreCatalog(1);
                     return;
                 default:
                     Console.WriteLine("You have entered an invalid input. Please try again.");
-                    Cups(game);
+                    Cups();
                     return;
             }
         }
-        private void Sugar(Game game)
+        private void Sugar()
         {
             Console.Clear();
-            game.DisplayInventory();
+            UI.DisplayInventory(player);
             Console.WriteLine("\n--Sugar--\n(1) 4 Cups of Sugar Cost: $ 8.00\n(2) 16 Cups of Sugar Cost: $ 23.00\n(3) 32 Cups of Sugar Cost: $43\n(4) Go Back");
             switch (Convert.ToInt32(Console.ReadLine()))
             {
@@ -223,12 +223,12 @@ namespace LemonadeStand
                     {
                         player.wallet.DecrementMoney(8);
                         player.sugar.IncramentInventory(4);
-                        Sugar(game);
+                        Sugar();
                         return;
                     }
                     else
                     {
-                        StoreCatalog(1, game);
+                        StoreCatalog(1);
                     }
                     break;
                 case 2:
@@ -236,12 +236,12 @@ namespace LemonadeStand
                     {
                         player.wallet.DecrementMoney(23);
                         player.sugar.IncramentInventory(16);
-                        Sugar(game);
+                        Sugar();
                         return;
                     }
                     else
                     {
-                        StoreCatalog(1, game);
+                        StoreCatalog(1);
                     }
                     break;
                 case 3:
@@ -249,20 +249,20 @@ namespace LemonadeStand
                     {
                         player.wallet.DecrementMoney(43);
                         player.sugar.IncramentInventory(32);
-                        Sugar(game);
+                        Sugar();
                         return;
                     }
                     else
                     {
-                        StoreCatalog(1, game);
+                        StoreCatalog(1);
                     }
                     break;
                 case 4:
-                    StoreCatalog(1, game);
+                    StoreCatalog(1);
                     return;
                 default:
                     Console.WriteLine("You have entered an invalid input. Please try again.");
-                    Sugar(game);
+                    Sugar();
                     return;
             }
         }
