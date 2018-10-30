@@ -27,6 +27,13 @@ namespace LemonadeStand
                 return tasteQuality;
             }
         }
+        public double PriceOfGlass
+        {
+            get
+            {
+                return priceOfGlass;
+            }
+        }
         public Pitcher(Recipe recipe, Player player)
         {
             this.recipe = recipe;

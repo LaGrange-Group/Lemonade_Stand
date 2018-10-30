@@ -9,46 +9,195 @@ namespace LemonadeStand
     class AI
     {
         private Weather weather;
-        private Recipe recipe;
-        private Pitcher pitcher;
+        private Player player;
         private Random random;
-        private int dayConditionPercent;
         private int scorePercent;
-        public AI(Weather weather, Recipe recipe, Pitcher pitcher)
+        public AI(Weather weather, Player player)
         {
             random = new Random();
             this.weather = weather;
-            this.recipe = recipe;
-            this.pitcher = pitcher;
+            this.player = player;
         }
-        public void StartAI()
+        public void RunAI()
         {
-            DayConditionPercent();
+            MakeChoice(FindRandomNumberRangeForChoice(FindAveragePercent(FindScore(), DayConditionPercent())));
         }
-        private void DayConditionPercent()
+        private int FindAveragePercent(int percentOne, int percentTwo)
+        {
+            int percent;
+            percent = (percentOne + percentTwo) / 2;
+            return percent;
+        }
+        private int FindRandomNumberRangeForChoice(int percent)
+        {
+            if (percent >= 75)
+            {
+                return random.Next(3, 10);
+            }else if(percent >= 50)
+            {
+                return random.Next(2, 10);
+            }else if(percent > 25)
+            {
+                return random.Next(0, 10);
+            }
+            else
+            {
+                return random.Next(0, 8);
+            }
+        }
+        private bool MakeChoice(int factor)
+        {
+            if (factor >= 5)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private int DayConditionPercent()
         {
             switch (weather.DayCondition)
             {
                 case "Sunny":
-                    dayConditionPercent = 100;
-                    break;
+                    return 100;
                 case "Overcast":
-                    dayConditionPercent = 70;
-                    break;
+                    return 70;
                 case "Rainy":
-                    dayConditionPercent = 50;
-                    break;
+                    return 50;
                 case "Stormy":
-                    dayConditionPercent = 30;
-                    break;
+                    return 30;
                 case "Mixed":
-                    dayConditionPercent = random.Next(20, 80);
-                    break;
+                    return random.Next(20, 80);
                 default:
-                    break;
+                    Console.WriteLine("\nError in setting day condition. Game is broken!");
+                    return 0;
             }
         }
-
+        private int FindScore()
+        {
+            int score = 0;
+            score += TemperatureScore();
+            score += PriceScore();
+            score += RecipeQualityScore();
+            return CalculateScorePercent(score, 3);
+        }
+        private int CalculateScorePercent(int score, int highestPossScore)
+        {
+            int percent;
+            percent = score / highestPossScore;
+            percent *= 100;
+            return percent;
+        }
+        private int TemperatureScore()
+        {
+            if (weather.Temperature >= 90)
+            {
+                if(player.recipe.IceGet >= 5)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }else if (weather.Temperature >= 75)
+            {
+                if (player.recipe.IceGet >= 4)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else if (weather.Temperature >= 50)
+            {
+                if (player.recipe.IceGet >= 3)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else if (weather.Temperature < 50)
+            {
+                if (player.recipe.IceGet >= 1)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            Console.WriteLine("Weather temerature error! Warning, game broken!");
+            return 0;
+        }
+        private int PriceScore()
+        {
+            if (weather.Temperature >= 90)
+            {
+                if (player.pitcher.PriceOfGlass < 0.50)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else if (weather.Temperature >= 75)
+            {
+                if (player.pitcher.PriceOfGlass < 0.35)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else if (weather.Temperature >= 50)
+            {
+                if (player.pitcher.PriceOfGlass < 0.25)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else if (weather.Temperature < 50)
+            {
+                if (player.pitcher.PriceOfGlass < 0.20)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            Console.WriteLine("Price of glass error! Warning, game broken!");
+            return 0;
+        }
+        private int RecipeQualityScore()
+        {
+            if (player.pitcher.TasteQuality == true)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
 
     }

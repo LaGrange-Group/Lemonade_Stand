@@ -11,14 +11,12 @@ namespace LemonadeStand
         private Weather weather;
         private Customer customer;
         private Random random;
-        private Recipe recipe;
-        private Pitcher pitcher;
+        private Player player;
 
 
-        public Day(Recipe recipe, Pitcher pitcher)
+        public Day(Player player)
         {
-            this.recipe = recipe;
-            this.pitcher = pitcher;
+            this.player = player;
             weather = new Weather();
             random = new Random();
         }
@@ -28,7 +26,7 @@ namespace LemonadeStand
             int amountOfCustomers = random.Next(30, 150);
             int i = 0;
             while (i < amountOfCustomers){
-                Customer customer = new Customer(weather, );
+                Customer customer = new Customer(player);
             }
         }
     }

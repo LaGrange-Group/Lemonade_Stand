@@ -9,22 +9,18 @@ namespace LemonadeStand
     class Customer
     {
         private Weather weather;
-        private Recipe recipe;
-        private Pitcher pitcher;
+        private Player player;
         private int chanceToBuy;
-        public Customer(Weather weather, Recipe recipe, Pitcher pitcher)
+        public Customer(Weather weather, Player player)
         {
             this.weather = weather;
-            this.recipe = recipe;
-            this.pitcher = pitcher;
+            this.player = player;
         }
 
-        public int FindChance()
+        public bool FindDecisionToBuy()
         {
-
-            AI ai = new AI(weather, recipe, pitcher);
-
-            return 1;
+            AI ai = new AI(weather, player);
+            return ai.RunAI();
         }
 
     }

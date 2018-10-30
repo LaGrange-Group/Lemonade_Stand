@@ -16,7 +16,7 @@ namespace LemonadeStand
         {
             player = new Player();
             store = new Store(player);
-            day = new Day(player.recipe, player.pitcher);
+            day = new Day(player);
         }
         public void StartGame()
         {
