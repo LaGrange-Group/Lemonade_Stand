@@ -8,7 +8,7 @@ namespace LemonadeStand
 {
     class Day
     {
-        private Weather weather;
+        public Weather weather;
         private Random random;
         private Player player;
 

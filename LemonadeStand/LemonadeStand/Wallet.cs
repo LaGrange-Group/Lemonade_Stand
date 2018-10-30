@@ -32,7 +32,8 @@ namespace LemonadeStand
         {
             if (money < amount)
             {
-                Console.WriteLine("\nI'm sorry, you dont have enough money for this!");
+                Console.WriteLine("\nI'm sorry, you dont have enough money for this! (Press enter to continue)");
+                Console.ReadLine();
                 return false;
             }
             else

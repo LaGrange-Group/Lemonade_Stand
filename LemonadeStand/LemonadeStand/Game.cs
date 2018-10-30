@@ -29,18 +29,20 @@ namespace LemonadeStand
         }
         public void PlayerMenu()
         {
-            Console.WriteLine("--Player Menu--");
+            Console.Clear();
+            Console.WriteLine("--Main Menu--");
             DisplayInventory();
+            DisplayWeather(day.weather);
             PlayerActions();
             Console.ReadLine();
         }
         private void PlayerActions()
         {
-            Console.WriteLine("\nType: \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n\n(4) to start simulation for day " + currentDay);
+            Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n\n(4) to start simulation for day " + currentDay);
             switch (Convert.ToInt32(Console.ReadLine()))
             {
                 case 1:
-                    store.EnterStore();
+                    store.EnterStore(this);
                     break;
                 case 2:
                     player.SetRecipe(this);
@@ -74,11 +76,13 @@ namespace LemonadeStand
                     break;
             }
         }
-        private void DisplayInventory()
+        public void DisplayInventory()
         {
-            Console.Clear();
             Console.WriteLine("\n--Inventory--\nMoney: $" + player.wallet.Money + "\nLemons: " + player.lemons.amount + "\nCups of sugar: " + player.sugar.amount + "\nPieces of ice: " + player.ice.amount + "\nCups: " + player.cups.amount + "\n\nDay: " + currentDay + " / " + amountOfDays );
-          
+        }
+        private void DisplayWeather(Weather weather)
+        {
+            Console.WriteLine("\n\n--Weather--\nWeather Condition: " + weather.DayCondition + "\nTemperature: " + weather.Temperature);
         }
     }
 }
