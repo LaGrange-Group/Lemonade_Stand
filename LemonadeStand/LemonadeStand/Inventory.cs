@@ -17,5 +17,9 @@ namespace LemonadeStand
         {
             amount += newAmount;
         }
+        public void DecramentInventory(int newAmount)
+        {
+            amount -= newAmount;
+        }
     }
 }

@@ -36,6 +36,13 @@ namespace LemonadeStand
         private void SetRecipe()
         {
             recipe = new Recipe();
+            recipe.RecipeStart();
+            CreateLemonade(recipe);
+        }
+        private void CreateLemonade(Recipe recipe)
+        {
+            pitcher = new Pitcher(recipe, this);
+            pitcher.CreateLemonade();
         }
     }
 }

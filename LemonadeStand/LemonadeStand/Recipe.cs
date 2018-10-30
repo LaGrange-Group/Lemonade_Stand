@@ -11,15 +11,36 @@ namespace LemonadeStand
         private int lemons;
         private int sugar;
         private int ice;
+        public int Lemons
+        {
+            get
+            {
+                return lemons;
+            }
+        }
+        public int Sugar
+        {
+            get
+            {
+                return sugar;
+            }
+        }
+        public int Ice
+        {
+            get
+            {
+                return ice;
+            }
+        }
         public Recipe()
         {
             RecipeStart();
         }
-        private void RecipeStart()
+        public void RecipeStart()
         {
             Console.WriteLine("\nIts time to set your daily recipe!");
         }
-        public void CreateRecipe()
+        private void CreateRecipe()
         {
             Lemons();
             Sugar();
