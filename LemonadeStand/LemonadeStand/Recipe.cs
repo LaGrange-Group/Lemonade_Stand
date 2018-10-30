@@ -11,6 +11,7 @@ namespace LemonadeStand
         private int lemons;
         private int sugar;
         private int ice;
+        public bool recipeSet;
         public int LemonsGet
         {
             get
@@ -34,7 +35,7 @@ namespace LemonadeStand
         }
         public Recipe()
         {
-            RecipeStart();
+            recipeSet = false;
         }
         public void RecipeStart()
         {
@@ -46,24 +47,22 @@ namespace LemonadeStand
             Lemons();
             Sugar();
             Ice();
+            DisplayRecipe();
         }
         private void Lemons()
         {
             Console.WriteLine("\nHow many lemons per pitcher?");
             lemons = Convert.ToInt32(Console.ReadLine());
-            Sugar();
         }
         private void Sugar()
         {
             Console.WriteLine("\nHow many cups of sugar per pitcher?");
             sugar = Convert.ToInt32(Console.ReadLine());
-            Ice();
         }
         private void Ice()
         {
             Console.WriteLine("\nHow much ice per cup? (12 cups per pitcher)");
             ice = Convert.ToInt32(Console.ReadLine());
-            DisplayRecipe();
         }
         private void DisplayRecipe()
         {
@@ -76,6 +75,7 @@ namespace LemonadeStand
             switch (Convert.ToInt32(Console.ReadLine()))
             {
                 case 1:
+                    recipeSet = true;
                     return;
                 case 2:
                     RecipeStart();

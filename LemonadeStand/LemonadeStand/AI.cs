@@ -11,7 +11,6 @@ namespace LemonadeStand
         private Weather weather;
         private Player player;
         private Random random;
-        private int scorePercent;
         public AI(Weather weather, Player player)
         {
             random = new Random();

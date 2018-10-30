@@ -12,6 +12,7 @@ namespace LemonadeStand
         private double priceOfGlass;
         private bool tasteQuality;
         private int cups;
+        public bool createdLemonade;
         public int Cups
         {
             get
@@ -33,17 +34,28 @@ namespace LemonadeStand
                 return priceOfGlass;
             }
         }
-        public Pitcher(Recipe recipe, Player player)
+        public Pitcher(Player player)
         {
+            createdLemonade = false;
             this.player = player;
         }
         public void CreateLemonade()
         {
-            player.lemons.DecramentInventory(player.recipe.LemonsGet);
-            player.sugar.DecramentInventory(player.recipe.SugarGet);
-            player.ice.DecramentInventory(player.recipe.IceGet);
-            cups = 12;
-            SetTaste();
+            if(player.lemons.CheckForValidAmount(player.recipe.LemonsGet) == true && player.sugar.CheckForValidAmount(player.recipe.SugarGet) == true && player.ice.CheckForValidAmount(player.recipe.IceGet) == true)
+            {
+                player.lemons.DecramentInventory(player.recipe.LemonsGet);
+                player.sugar.DecramentInventory(player.recipe.SugarGet);
+                player.ice.DecramentInventory(player.recipe.IceGet);
+                cups = 12;
+                SetTaste();
+            }
+            else
+            {
+                Console.WriteLine("\nCheck you inventory and check you recipe. You need more stuff to start! Ok? (Hit enter to continue back to main menu)");
+                Console.ReadLine();
+                return;
+            }
+
         }
         private void SetTaste()
         {
@@ -63,6 +75,7 @@ namespace LemonadeStand
             priceOfGlass = Convert.ToInt32(Console.ReadLine());
             if (priceOfGlass >= 0.01 && priceOfGlass <= 100)
             {
+                createdLemonade = true;
                 return;
             }
             else

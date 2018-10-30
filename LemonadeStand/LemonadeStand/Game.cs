@@ -19,7 +19,7 @@ namespace LemonadeStand
             player = new Player();
             store = new Store(player);
             day = new Day(player);
-            currentDay = 0;
+            currentDay = 1;
         }
         public void StartGame()
         {
@@ -27,7 +27,7 @@ namespace LemonadeStand
             player.SetName();
             SetDaysToPlay();
         }
-        private void PlayerMenu()
+        public void PlayerMenu()
         {
             Console.WriteLine("--Player Menu--");
             DisplayInventory();
@@ -36,14 +36,20 @@ namespace LemonadeStand
         }
         private void PlayerActions()
         {
-            Console.WriteLine("\nType: \n(1) to visit store\n(2) to set recipe");
+            Console.WriteLine("\nType: \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n\n(4) to start simulation for day " + currentDay);
             switch (Convert.ToInt32(Console.ReadLine()))
             {
                 case 1:
                     store.EnterStore();
                     break;
                 case 2:
-                    player.SetRecipe();
+                    player.SetRecipe(this);
+                    break;
+                case 3:
+                    player.CreateLemonade(player.recipe, this);
+                    break;
+                case 4:
+                    // Start Simulation
                     break;
                 default:
                     Console.WriteLine("You have entered an invalid input. Please try again.");
@@ -71,7 +77,7 @@ namespace LemonadeStand
         private void DisplayInventory()
         {
             Console.Clear();
-            Console.WriteLine("--Inventory--\nMoney: $" + player.wallet.Money + "\nLemons: " + player.lemons.amount + "\nCups of sugar: " + player.sugar.amount + "\nPieces of ice: " + player.ice.amount + "\nCups: " + player.cups.amount + "\n\nDay: " + currentDay + " / " + amountOfDays );
+            Console.WriteLine("\n--Inventory--\nMoney: $" + player.wallet.Money + "\nLemons: " + player.lemons.amount + "\nCups of sugar: " + player.sugar.amount + "\nPieces of ice: " + player.ice.amount + "\nCups: " + player.cups.amount + "\n\nDay: " + currentDay + " / " + amountOfDays );
           
         }
     }

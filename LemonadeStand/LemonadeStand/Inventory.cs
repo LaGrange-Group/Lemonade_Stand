@@ -13,6 +13,18 @@ namespace LemonadeStand
         {
             amount = 0;
         }
+        public bool CheckForValidAmount(int newAmount)
+        {
+            if (amount < newAmount)
+            {
+                Console.WriteLine("\nI'm sorry, you dont have enough of those items for that!");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         public void IncramentInventory(int newAmount)
         {
             amount += newAmount;

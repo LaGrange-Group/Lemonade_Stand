@@ -8,7 +8,6 @@ namespace LemonadeStand
 {
     class Store
     {
-        private int price;
         private Player player;
         public Store(Player player)
         {

@@ -32,16 +32,25 @@ namespace LemonadeStand
             Console.WriteLine("\nPlease enter your name..");
             name = Console.ReadLine();
         }
-        public void SetRecipe()
+        public void SetRecipe(Game game)
         {
             recipe = new Recipe();
             recipe.RecipeStart();
-            CreateLemonade(recipe);
+            game.PlayerMenu();
         }
-        private void CreateLemonade(Recipe recipe)
+        public void CreateLemonade(Recipe recipe, Game game)
         {
-            pitcher = new Pitcher(recipe, this);
-            pitcher.CreateLemonade();
+            if (recipe != null && recipe.recipeSet == true)
+            {
+                pitcher = new Pitcher(this);
+                pitcher.CreateLemonade();
+            }
+            else
+            {
+                Console.WriteLine("\nYou need to set a recipe before you can create lemonade! (Hit enter to continue)");
+                Console.ReadLine();
+            }
+            game.PlayerMenu();
         }
     }
 }
