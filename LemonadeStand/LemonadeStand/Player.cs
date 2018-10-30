@@ -20,7 +20,6 @@ namespace LemonadeStand
 
         public Player()
         {
-            SetName();
             inventory = new List<Inventory>();
             inventory.Add(lemons = new Lemons());
             inventory.Add(sugar = new Sugar());
@@ -28,9 +27,9 @@ namespace LemonadeStand
             inventory.Add(cups = new Cups());
             wallet = new Wallet();
         }
-        private void SetName()
+        public void SetName()
         {
-            Console.WriteLine("Please enter your name..");
+            Console.WriteLine("\nPlease enter your name..");
             name = Console.ReadLine();
         }
         private void SetRecipe()

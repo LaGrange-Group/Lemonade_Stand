@@ -18,9 +18,9 @@ namespace LemonadeStand
             this.weather = weather;
             this.player = player;
         }
-        public void RunAI()
+        public bool RunAI()
         {
-            MakeChoice(FindRandomNumberRangeForChoice(FindAveragePercent(FindScore(), DayConditionPercent())));
+            return MakeChoice(FindRandomNumberRangeForChoice(FindAveragePercent(FindScore(), DayConditionPercent())));
         }
         private int FindAveragePercent(int percentOne, int percentTwo)
         {
@@ -198,7 +198,5 @@ namespace LemonadeStand
                 return 0;
             }
         }
-
-
     }
 }

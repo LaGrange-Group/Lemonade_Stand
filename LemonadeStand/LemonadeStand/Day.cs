@@ -26,7 +26,8 @@ namespace LemonadeStand
             int amountOfCustomers = random.Next(30, 150);
             int i = 0;
             while (i < amountOfCustomers){
-                Customer customer = new Customer(player);
+                Customer customer = new Customer(weather, player);
+                customer.DecisionToBuy();
             }
         }
     }

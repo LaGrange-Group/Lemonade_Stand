@@ -10,17 +10,34 @@ namespace LemonadeStand
     {
         private Weather weather;
         private Player player;
-        private int chanceToBuy;
+        private bool choice;
         public Customer(Weather weather, Player player)
         {
             this.weather = weather;
             this.player = player;
         }
 
-        public bool FindDecisionToBuy()
+        public void DecisionToBuy()
         {
             AI ai = new AI(weather, player);
-            return ai.RunAI();
+            choice = ai.RunAI();
+            if (choice == true)
+            {
+                GiveMoney();
+                TakeCup();
+            }
+            else
+            {
+                return;
+            }
+        }
+        private void GiveMoney()
+        {
+            player.wallet.IncramentMoney(player.pitcher.PriceOfGlass);
+        }
+        private void TakeCup()
+        {
+            player.pitcher.DecramentCups();
         }
 
     }

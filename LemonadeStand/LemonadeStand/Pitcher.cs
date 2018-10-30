@@ -8,7 +8,6 @@ namespace LemonadeStand
 {
     class Pitcher
     {
-        private Recipe recipe;
         private Player player;
         private double priceOfGlass;
         private bool tasteQuality;
@@ -36,19 +35,19 @@ namespace LemonadeStand
         }
         public Pitcher(Recipe recipe, Player player)
         {
-            this.recipe = recipe;
             this.player = player;
         }
         public void CreateLemonade()
         {
-            player.lemons.DecramentInventory(recipe.LemonsGet);
-            player.sugar.DecramentInventory(recipe.SugarGet);
-            player.ice.DecramentInventory(recipe.IceGet);
+            player.lemons.DecramentInventory(player.recipe.LemonsGet);
+            player.sugar.DecramentInventory(player.recipe.SugarGet);
+            player.ice.DecramentInventory(player.recipe.IceGet);
+            cups = 12;
             SetTaste();
         }
         private void SetTaste()
         {
-            if (recipe.LemonsGet - recipe.SugarGet > 1 || recipe.LemonsGet - recipe.SugarGet < -1)
+            if (player.recipe.LemonsGet - player.recipe.SugarGet > 1 || player.recipe.LemonsGet - player.recipe.SugarGet < -1)
             {
                 tasteQuality = false;
             }

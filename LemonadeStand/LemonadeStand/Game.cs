@@ -20,7 +20,19 @@ namespace LemonadeStand
         }
         public void StartGame()
         {
-
+            DisplayGameInfo("welcome");
+            player.SetName();
+        }
+        private void DisplayGameInfo(string thisCase)
+        {
+            switch (thisCase)
+            {
+                case "welcome":
+                    Console.WriteLine("Welcome to Lemonade Stand!");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

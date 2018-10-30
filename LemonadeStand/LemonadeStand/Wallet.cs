@@ -8,20 +8,20 @@ namespace LemonadeStand
 {
     class Wallet
     {
-        private int money;
+        private double money;
         public Wallet()
         {
             money = 20;
         }
-        public void IncramentMoney(int cost)
+        public void IncramentMoney(double cost)
         {
             money += cost;
         }
-        public void DecrementMoney(int amount)
+        public void DecrementMoney(double amount)
         {
             money -= amount;
         }
-        public bool CheckIfEnoughMoney(int amount)
+        public bool CheckIfEnoughMoney(double amount)
         {
             if (money < amount)
             {
