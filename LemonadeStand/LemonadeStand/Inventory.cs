@@ -8,7 +8,7 @@ namespace LemonadeStand
 {
     public abstract class Inventory
     {
-        protected int amount;
+        public int amount;
         public Inventory()
         {
             amount = 0;

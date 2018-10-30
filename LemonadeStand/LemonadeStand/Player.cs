@@ -32,7 +32,7 @@ namespace LemonadeStand
             Console.WriteLine("\nPlease enter your name..");
             name = Console.ReadLine();
         }
-        private void SetRecipe()
+        public void SetRecipe()
         {
             recipe = new Recipe();
             recipe.RecipeStart();

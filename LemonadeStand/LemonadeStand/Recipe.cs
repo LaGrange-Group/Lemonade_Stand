@@ -39,6 +39,7 @@ namespace LemonadeStand
         public void RecipeStart()
         {
             Console.WriteLine("\nIts time to set your daily recipe!");
+            CreateRecipe();
         }
         private void CreateRecipe()
         {
