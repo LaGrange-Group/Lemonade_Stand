@@ -9,12 +9,14 @@ namespace LemonadeStand
     class Store
     {
         private Player player;
+        private Game game;
         public Store(Player player)
         {
             this.player = player;
         }
-        public void EnterStore()
+        public void EnterStore(Game game)
         {
+            this.game = game;
             Console.Clear();
             Console.WriteLine("Welcome to the store!");
             StoreCatalog(0);
@@ -39,6 +41,7 @@ namespace LemonadeStand
                     Cups();
                     break;
                 case 5:
+                    game.ShowMenu();
                     return;
                 default:
                     Console.WriteLine("You have entered an invalid input. Please try again.");

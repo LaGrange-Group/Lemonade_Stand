@@ -72,7 +72,7 @@ namespace LemonadeStand
         private void SetPrice()
         {
             Console.WriteLine("\nYou've made your first pitcher of the day! \n\nHow much would you like to charge per glass of your lemonade? (Ex. 0.25) min: 0.01 max: 100.00 ");
-            priceOfGlass = Convert.ToInt32(Console.ReadLine());
+            priceOfGlass = Convert.ToDouble(Console.ReadLine());
             if (priceOfGlass >= 0.01 && priceOfGlass <= 100)
             {
                 createdLemonade = true;

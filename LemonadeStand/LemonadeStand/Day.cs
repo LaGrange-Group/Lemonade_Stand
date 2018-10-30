@@ -27,6 +27,8 @@ namespace LemonadeStand
             while (i < amountOfCustomers){
                 Customer customer = new Customer(weather, player);
                 customer.DecisionToBuy();
+                UI.PreviousCustomerDetails(customer);
+                i++;
             }
         }
     }

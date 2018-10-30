@@ -10,9 +10,11 @@ namespace LemonadeStand
     {
         private Weather weather;
         private Player player;
-        private bool choice;
+        public bool choice;
+        public string name;
         public Customer(Weather weather, Player player)
         {
+            name = "Phil";
             this.weather = weather;
             this.player = player;
         }

@@ -8,13 +8,23 @@ namespace LemonadeStand
 {
     static class UI
     {
-        public static void PlayerActions(Player player, Store store, Game game)
+        public static void PlayerMenu(Player player, Game game, Store store, Day day)
+        {
+            Console.Clear();
+            DisplayGameInfo("main");
+            DisplayInventory(player);
+            DisplayDayInfo(game);
+            DisplayWeather(day.weather);
+            PlayerActions(player, store, game, day);
+            Console.ReadLine();
+        }
+        public static void PlayerActions(Player player, Store store, Game game, Day day)
         {
             Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n\n(4) to start simulation for day " + game.currentDay);
             switch (Convert.ToInt32(Console.ReadLine()))
             {
                 case 1:
-                    store.EnterStore();
+                    store.EnterStore(game);
                     break;
                 case 2:
                     player.SetRecipe(game);
@@ -23,13 +33,40 @@ namespace LemonadeStand
                     player.CreateLemonade(player.recipe, game);
                     break;
                 case 4:
-                    // Start Simulation
+                    game.CheckIfReadyToSimulate();
                     break;
                 default:
                     Console.WriteLine("You have entered an invalid input. Please try again.");
-                    PlayerActions(player, store, game);
+                    PlayerActions(player, store, game, day);
                     return;
             }
+        }
+        public static void CheckWhyFail(Player player)
+        {
+            if(player.recipe.recipeSet != true)
+            {
+                Console.WriteLine("You need to come up with a recipe before you can start the day!");
+            }else if(player.pitcher.createdLemonade != true)
+            {
+                Console.WriteLine("You havent created a pitcher of lemonade yet. Go make one so you have something to give to your customers!");
+            }
+            else
+            {
+                Console.WriteLine("You have no cups! Go buy some so people can purchase your lemonade!");
+            }
+        }
+        public static void PreviousCustomerDetails(Customer customer)
+        {
+            string choiceString;
+            if (customer.choice == true)
+            {
+                choiceString = "buy";
+            }
+            else
+            {
+                choiceString = "not buy";
+            }
+            Console.WriteLine(customer.name + " has decided to " + choiceString + " your lemonade.");
         }
         public static int SetDaysToPlay()
         {

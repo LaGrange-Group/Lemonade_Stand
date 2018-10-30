@@ -18,7 +18,7 @@ namespace LemonadeStand
         }
         public Wallet()
         {
-            money = 20;
+            money = 40;
         }
         public void IncramentMoney(double cost)
         {

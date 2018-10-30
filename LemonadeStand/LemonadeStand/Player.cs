@@ -36,7 +36,7 @@ namespace LemonadeStand
         {
             recipe = new Recipe();
             recipe.RecipeStart();
-            game.PlayerMenu();
+            game.ShowMenu();
         }
         public void CreateLemonade(Recipe recipe, Game game)
         {
@@ -50,7 +50,7 @@ namespace LemonadeStand
                 Console.WriteLine("\nYou need to set a recipe before you can create lemonade! (Hit enter to continue)");
                 Console.ReadLine();
             }
-            game.PlayerMenu();
+            game.ShowMenu();
         }
     }
 }

@@ -26,20 +26,32 @@ namespace LemonadeStand
             UI.DisplayGameInfo("welcome");
             player.SetName();
             amountOfDays = UI.SetDaysToPlay();
-            PlayerMenu();
+            ShowMenu();
         }
-        public void PlayerMenu()
+        public void ShowMenu()
         {
-            Console.Clear();
-            UI.DisplayGameInfo("main");
-            UI.DisplayInventory(player);
-            UI.DisplayDayInfo(this);
-            UI.DisplayWeather(day.weather);
-            UI.PlayerActions(player, store, this);
-            Console.ReadLine();
+            UI.PlayerMenu(player, this, store, day);
         }
 
+        
+        public void CheckIfReadyToSimulate()
+        {
+            if (player.recipe.recipeSet == true && player.pitcher.createdLemonade == true && player.cups.amount != 0)
+            {
+                SimulateDay();
+            }
+            else
+            {
+                UI.CheckWhyFail(player);
+            }
+        }
+        public void SimulateDay()
+        {
+            day.DailyCustomers();
+            ShowMenu();
+            Console.ReadLine();
 
+        }
 
 
 
