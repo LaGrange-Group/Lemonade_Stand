@@ -10,6 +10,7 @@ namespace LemonadeStand
     {
         public Wallet wallet;
         private Pitcher pitcher;
+        private Recipe recipe;
         public Inventory lemons;
         public Inventory sugar;
         public Inventory ice;
@@ -31,6 +32,10 @@ namespace LemonadeStand
         {
             Console.WriteLine("Please enter your name..");
             name = Console.ReadLine();
+        }
+        private void SetRecipe()
+        {
+            recipe = new Recipe();
         }
     }
 }
