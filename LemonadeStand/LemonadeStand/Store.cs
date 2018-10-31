@@ -17,15 +17,14 @@ namespace LemonadeStand
         public void EnterStore(Game game)
         {
             this.game = game;
-            Console.Clear();
-            Console.WriteLine("Welcome to the store!");
             StoreCatalog(0);
         }
         private void StoreCatalog(int iter)
         {
             Console.Clear();
+            UI.DisplayStoreInfo("welcome");
             UI.DisplayInventory(player);
-            Console.WriteLine("\nTo view price and amounts of an item enter their relative number index. \n(1) Lemons \n(2) Sugar \n(3) Ice \n(4) Cups\n(5) Finished with the store!");
+            UI.DisplayStoreInfo("storeitems");
             switch (Convert.ToInt32(Console.ReadLine()))
             {
                 case 1:
@@ -44,7 +43,7 @@ namespace LemonadeStand
                     game.ShowMenu();
                     return;
                 default:
-                    Console.WriteLine("You have entered an invalid input. Please try again.");
+                    UI.DisplayInvalid();
                     StoreCatalog(1);
                     return;
             }
@@ -53,7 +52,7 @@ namespace LemonadeStand
         {
             Console.Clear();
             UI.DisplayInventory(player);
-            Console.WriteLine("\n--Lemons--\n(1) 8 Lemons Cost: $ 8.00\n(2) 16 Lemons Cost: $ 15.00\n(3) 32 Lemons Cost: $29\n(4) Go Back ");
+            UI.DisplayStoreInfo("lemons");
             switch (Convert.ToInt32(Console.ReadLine()))
             {
                 case 1:
@@ -99,7 +98,7 @@ namespace LemonadeStand
                     StoreCatalog(1);
                     return;
                 default:
-                    Console.WriteLine("You have entered an invalid input. Please try again.");
+                    UI.DisplayInvalid();
                     Lemons();
                     return;
             }
@@ -108,7 +107,7 @@ namespace LemonadeStand
         {
             Console.Clear();
             UI.DisplayInventory(player);
-            Console.WriteLine("\n--Ice--\n(1) 50 Pieces of Ice Cost: $ 3.00\n(2) 100 Pieces of Ice Cost: $ 6.00\n(3) 200 Pieces of Ice Cost: $10\n(4) Go Back");
+            UI.DisplayStoreInfo("ice");
             switch (Convert.ToInt32(Console.ReadLine()))
             {
                 case 1:
@@ -154,7 +153,7 @@ namespace LemonadeStand
                     StoreCatalog(1);
                     return;
                 default:
-                    Console.WriteLine("You have entered an invalid input. Please try again.");
+                    UI.DisplayInvalid();
                     Ice();
                     return;
             }
@@ -163,7 +162,7 @@ namespace LemonadeStand
         {
             Console.Clear();
             UI.DisplayInventory(player);
-            Console.WriteLine("\n--Cups--\n(1) 20 Cups Cost: $ 3.00\n(2) 40 Cups Cost: $ 5.00\n(3) 100 Cups Cost: $10\n(4) Go Back");
+            UI.DisplayStoreInfo("cups");
             switch (Convert.ToInt32(Console.ReadLine()))
             {
                 case 1:
@@ -209,7 +208,7 @@ namespace LemonadeStand
                     StoreCatalog(1);
                     return;
                 default:
-                    Console.WriteLine("You have entered an invalid input. Please try again.");
+                    UI.DisplayInvalid();
                     Cups();
                     return;
             }
@@ -218,7 +217,7 @@ namespace LemonadeStand
         {
             Console.Clear();
             UI.DisplayInventory(player);
-            Console.WriteLine("\n--Sugar--\n(1) 4 Cups of Sugar Cost: $ 8.00\n(2) 16 Cups of Sugar Cost: $ 23.00\n(3) 32 Cups of Sugar Cost: $43\n(4) Go Back");
+            UI.DisplayStoreInfo("sugar");
             switch (Convert.ToInt32(Console.ReadLine()))
             {
                 case 1:
@@ -264,7 +263,7 @@ namespace LemonadeStand
                     StoreCatalog(1);
                     return;
                 default:
-                    Console.WriteLine("You have entered an invalid input. Please try again.");
+                    UI.DisplayInvalid();
                     Sugar();
                     return;
             }

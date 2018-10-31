@@ -41,6 +41,32 @@ namespace LemonadeStand
                     return;
             }
         }
+        public static void DisplayStoreInfo(string thisCase)
+        {
+            switch (thisCase)
+            {
+                case "welcome":
+                    Console.WriteLine("Welcome to the store!");
+                    break;
+                case "storeitems":
+                    Console.WriteLine("\nTo view price and amounts of an item enter their relative number index. \n(1) Lemons \n(2) Sugar \n(3) Ice \n(4) Cups\n(5) Finished with the store!");
+                    break;
+                case "lemons":
+                    Console.WriteLine("\n--Lemons--\n(1) 8 Lemons Cost: $ 8.00\n(2) 16 Lemons Cost: $ 15.00\n(3) 32 Lemons Cost: $29\n(4) Go Back ");
+                    break;
+                case "ice":
+                    Console.WriteLine("\n--Ice--\n(1) 50 Pieces of Ice Cost: $ 3.00\n(2) 100 Pieces of Ice Cost: $ 6.00\n(3) 200 Pieces of Ice Cost: $10\n(4) Go Back");
+                    break;
+                case "cups":
+                    Console.WriteLine("\n--Cups--\n(1) 20 Cups Cost: $ 3.00\n(2) 40 Cups Cost: $ 5.00\n(3) 100 Cups Cost: $10\n(4) Go Back");
+                    break;
+                case "sugar":
+                    Console.WriteLine("\n--Sugar--\n(1) 4 Cups of Sugar Cost: $ 8.00\n(2) 16 Cups of Sugar Cost: $ 23.00\n(3) 32 Cups of Sugar Cost: $43\n(4) Go Back");
+                    break;
+                default:
+                    break;
+            }
+        }
         public static void CheckWhyFail(Player player)
         {
             if(player.recipe.recipeSet != true)
@@ -54,6 +80,10 @@ namespace LemonadeStand
             {
                 Console.WriteLine("You have no cups! Go buy some so people can purchase your lemonade!");
             }
+        }
+        public static void DisplayInvalid()
+        {
+            Console.WriteLine("You have entered an invalid input. Please try again.");
         }
         public static void PreviousCustomerDetails(Customer customer)
         {
@@ -72,6 +102,10 @@ namespace LemonadeStand
         {
             Console.WriteLine("\nHow many days would you like to play for?");
             return Convert.ToInt32(Console.ReadLine());
+        }
+        public static void DisplayDayConclusion(double startingMoney, double percentDiff, int amountOfCustomers, int bought)
+        {
+            Console.WriteLine("");
         }
         public static void DisplayGameInfo(string thisCase)
         {

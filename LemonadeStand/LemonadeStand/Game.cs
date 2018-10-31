@@ -48,9 +48,17 @@ namespace LemonadeStand
         public void SimulateDay()
         {
             day.DailyCustomers();
-            ShowMenu();
+            CalculateForDayConclusion();
             Console.ReadLine();
-
+            ShowMenu();
+        }
+        private void CalculateForDayConclusion()
+        {
+            // Put in list + use list for UI layout/param plug in + pass in day
+            double percentDiff = player.FindWalletDifference(player.PreDayMoney, player.wallet.Money);
+            int amountOfCustomers = day.amountOfCustomers;
+            int amountWhoBought = day.bought;
+            UI.DisplayDayConclusion(player.PreDayMoney ,percentDiff, amountOfCustomers, amountWhoBought);
         }
 
 

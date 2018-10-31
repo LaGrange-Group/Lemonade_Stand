@@ -17,6 +17,18 @@ namespace LemonadeStand
         public Inventory cups;
         private List<Inventory> inventory;
         private string name;
+        private double preDayMoney;
+        public double PreDayMoney
+        {
+            get
+            {
+                return preDayMoney;
+            }
+            set
+            {
+                preDayMoney = value;
+            }
+        }
 
         public Player()
         {
@@ -51,6 +63,12 @@ namespace LemonadeStand
                 Console.ReadLine();
             }
             game.ShowMenu();
+        }
+        public double FindWalletDifference(double start, double end)
+        {
+            double diff = start/end;
+            diff *= 100;
+            return diff;
         }
     }
 }

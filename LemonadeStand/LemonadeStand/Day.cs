@@ -11,6 +11,9 @@ namespace LemonadeStand
         public Weather weather;
         private Random random;
         private Player player;
+        private Customer customer;
+        public int bought;
+        public int amountOfCustomers;
 
 
         public Day(Player player)
@@ -18,16 +21,18 @@ namespace LemonadeStand
             this.player = player;
             weather = new Weather();
             random = new Random();
+            bought = 0;
         }
 
         public void DailyCustomers()
         {
-            int amountOfCustomers = random.Next(30, 150);
+            amountOfCustomers = random.Next(30, 150);
             int i = 0;
             while (i < amountOfCustomers){
-                Customer customer = new Customer(weather, player);
+                customer = new Customer(weather, player);
                 customer.DecisionToBuy();
                 UI.PreviousCustomerDetails(customer);
+                bought++;
                 i++;
             }
         }
