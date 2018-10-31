@@ -66,8 +66,8 @@ namespace LemonadeStand
         }
         public double FindWalletDifference(double start, double end)
         {
-            double diff = start/end;
-            diff *= 100;
+            double diff = end - start;
+            diff = (diff / start) * 100;
             return diff;
         }
     }

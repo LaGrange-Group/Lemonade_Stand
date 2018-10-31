@@ -36,13 +36,14 @@ namespace LemonadeStand
         
         public void CheckIfReadyToSimulate()
         {
-            if (player.recipe.recipeSet == true && player.pitcher.createdLemonade == true && player.cups.amount != 0)
+            if (player.recipe != null && player.pitcher != null && player.cups.amount != 0)
             {
+                player.PreDayMoney = player.wallet.Money;
                 SimulateDay();
             }
             else
             {
-                UI.CheckWhyFail(player);
+                UI.CheckWhyFail(player, this);
             }
         }
         public void SimulateDay()
@@ -58,7 +59,7 @@ namespace LemonadeStand
             double percentDiff = player.FindWalletDifference(player.PreDayMoney, player.wallet.Money);
             int amountOfCustomers = day.amountOfCustomers;
             int amountWhoBought = day.bought;
-            UI.DisplayDayConclusion(player.PreDayMoney ,percentDiff, amountOfCustomers, amountWhoBought);
+            UI.DisplayDayConclusion(player.PreDayMoney, player.wallet.Money ,percentDiff, amountOfCustomers, amountWhoBought);
         }
 
 

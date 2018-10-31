@@ -8,6 +8,7 @@ namespace LemonadeStand
 {
     static class UI
     {
+        public static Random random = new Random();
         public static void PlayerMenu(Player player, Game game, Store store, Day day)
         {
             Console.Clear();
@@ -67,18 +68,24 @@ namespace LemonadeStand
                     break;
             }
         }
-        public static void CheckWhyFail(Player player)
+        public static void CheckWhyFail(Player player, Game game)
         {
-            if(player.recipe.recipeSet != true)
+            if(player.recipe == null)
             {
-                Console.WriteLine("You need to come up with a recipe before you can start the day!");
-            }else if(player.pitcher.createdLemonade != true)
+                Console.WriteLine("You need to come up with a recipe before you can start the day! (Hit enter to continue)");
+                Console.ReadLine();
+                game.ShowMenu();
+            }else if(player.pitcher == null)
             {
-                Console.WriteLine("You havent created a pitcher of lemonade yet. Go make one so you have something to give to your customers!");
+                Console.WriteLine("You havent created a pitcher of lemonade yet. Go make one so you have something to give to your customers! (Hit enter to continue)");
+                Console.ReadLine();
+                game.ShowMenu();
             }
             else
             {
-                Console.WriteLine("You have no cups! Go buy some so people can purchase your lemonade!");
+                Console.WriteLine("You have no cups! Go buy some so people can purchase your lemonade! (Hit enter to continue)");
+                Console.ReadLine();
+                game.ShowMenu();
             }
         }
         public static void DisplayInvalid()
@@ -103,9 +110,9 @@ namespace LemonadeStand
             Console.WriteLine("\nHow many days would you like to play for?");
             return Convert.ToInt32(Console.ReadLine());
         }
-        public static void DisplayDayConclusion(double startingMoney, double percentDiff, int amountOfCustomers, int bought)
+        public static void DisplayDayConclusion(double startingMoney, double endMoney, double percentDiff, int amountOfCustomers, int bought)
         {
-            Console.WriteLine("");
+            Console.WriteLine("\nToday you had " + amountOfCustomers + " customers. Out of " + amountOfCustomers + ", " + bought + " decided to buy. " + "\nYou started the day with ${0:00.00}. You ended the day with ${1:00.00}. That is a {2:00.00}% difference!", startingMoney, endMoney, percentDiff);
         }
         public static void DisplayGameInfo(string thisCase)
         {

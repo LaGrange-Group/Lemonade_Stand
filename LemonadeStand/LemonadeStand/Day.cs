@@ -20,19 +20,18 @@ namespace LemonadeStand
         {
             this.player = player;
             weather = new Weather();
-            random = new Random();
+            //random = new Random();
             bought = 0;
         }
 
         public void DailyCustomers()
         {
-            amountOfCustomers = random.Next(30, 150);
+            amountOfCustomers = UI.random.Next(30, 150);
             int i = 0;
             while (i < amountOfCustomers){
-                customer = new Customer(weather, player);
-                customer.DecisionToBuy();
+                customer = new Customer(weather, player, random);
+                customer.DecisionToBuy(this);
                 UI.PreviousCustomerDetails(customer);
-                bought++;
                 i++;
             }
         }
