@@ -11,6 +11,7 @@ namespace LemonadeStand
         private Day day;
         private Player player;
         private Store store;
+        private List<string> dayResultsData;
         public int amountOfDays;
         public int currentDay;
 
@@ -19,6 +20,7 @@ namespace LemonadeStand
             player = new Player();
             store = new Store(player);
             day = new Day(player);
+            dayResultsData = new List<string>();
             currentDay = 1;
         }
         public void StartGame()
@@ -38,25 +40,49 @@ namespace LemonadeStand
         {
             if (player.recipe != null && player.pitcher != null && player.cups.amount != 0)
             {
-                player.PreDayMoney = player.wallet.Money;
-                SimulateDay();
+                if (player.pitcher.createdLemonade == true)
+                {
+                    player.PreDayMoney = player.wallet.Money;
+                    SimulateDay();
+                    return;
+                }
             }
-            else
-            {
-                UI.CheckWhyFail(player, this);
-            }
+            UI.CheckWhyFail(player, this);
         }
         public void SimulateDay()
         {
             day.DailyCustomers();
             CalculateForDayConclusion();
-            Console.ReadLine();
-            ShowMenu();
+            CheckIfFinished();
         }
         private void CalculateForDayConclusion()
         {
             double percentDiff = player.FindWalletDifference(player.PreDayMoney, player.wallet.Money);
             UI.DisplayDayConclusion(player.PreDayMoney, player.wallet.Money ,percentDiff, day.amountOfCustomers, day.bought);
+        }
+        private void IncramentDay()
+        {
+            currentDay++;
+        }
+        private void CheckIfFinished()
+        {
+            if (amountOfDays == currentDay)
+            {
+                UI.DisplayGameEnd();
+            }
+            else
+            {
+                UI.DisplayGameInfo("continue");
+                IncramentDay();
+                MoveToNextDay();
+            }
+        }
+        private void MoveToNextDay()
+        {
+            day = new Day(player);
+            player.pitcher.createdLemonade = false;
+            ShowMenu();
+            return;
         }
 
 

@@ -19,6 +19,10 @@ namespace LemonadeStand
             PlayerActions(player, store, game, day);
             Console.ReadLine();
         }
+        public static void DisplayGameEnd()
+        {
+
+        }
         public static void PlayerActions(Player player, Store store, Game game, Day day)
         {
             Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n\n(4) to start simulation for day " + game.currentDay);
@@ -75,7 +79,7 @@ namespace LemonadeStand
                 Console.WriteLine("You need to come up with a recipe before you can start the day! (Hit enter to continue)");
                 Console.ReadLine();
                 game.ShowMenu();
-            }else if(player.pitcher == null)
+            }else if(player.pitcher == null || player.pitcher.createdLemonade == false)
             {
                 Console.WriteLine("You havent created a pitcher of lemonade yet. Go make one so you have something to give to your customers! (Hit enter to continue)");
                 Console.ReadLine();
@@ -123,6 +127,10 @@ namespace LemonadeStand
                     break;
                 case "main":
                     Console.WriteLine("--Main Menu--");
+                    break;
+                case "continue":
+                    Console.WriteLine("Are you ready to continue to the next day? (Hit enter to continue)");
+                    Console.ReadLine();
                     break;
                 default:
                     break;
