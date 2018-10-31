@@ -89,5 +89,26 @@ namespace LemonadeStand
         {
             cups--;
         }
+        public void CheckAmountOfCupsLeftPerPitcher()
+        {
+            if (cups == 0)
+            {
+                AutoCreateNewPitcher();
+            }
+        }
+        private void AutoCreateNewPitcher()
+        {
+            if (player.lemons.CheckForValidAmount(player.recipe.LemonsGet) == true && player.sugar.CheckForValidAmount(player.recipe.SugarGet) == true && player.ice.CheckForValidAmount(player.recipe.IceGet) == true)
+            {
+                player.lemons.DecramentInventory(player.recipe.LemonsGet);
+                player.sugar.DecramentInventory(player.recipe.SugarGet);
+                player.ice.DecramentInventory(player.recipe.IceGet);
+                cups = 12;
+            }
+            else
+            {
+                Console.WriteLine("\nYou cannot create a new pitcher becuase you are our of certain inventory! Plan ahead better! \n\n--SOLD OUT--\n\n");
+            }
+        }
     }
 }

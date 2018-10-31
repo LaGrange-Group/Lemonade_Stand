@@ -11,7 +11,7 @@ namespace LemonadeStand
         public int amount;
         public Inventory()
         {
-            amount = 30;
+            amount = 15;
         }
         public bool CheckForValidAmount(int newAmount)
         {

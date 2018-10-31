@@ -30,15 +30,23 @@ namespace LemonadeStand
         {
             AI ai = new AI(weather, player);
             choice = ai.RunAI();
-            if (choice == true)
+            if (player.pitcher.Cups < 0)
             {
-                day.bought++;
-                GiveMoney();
-                TakeCup();
+                choice = false;
             }
             else
             {
-                return;
+                if (choice == true)
+                {
+                    day.bought++;
+                    player.pitcher.CheckAmountOfCupsLeftPerPitcher();
+                    GiveMoney();
+                    TakeCup();
+                }
+                else
+                {
+                    return;
+                }
             }
         }
         private void GiveMoney()
@@ -47,6 +55,7 @@ namespace LemonadeStand
         }
         private void TakeCup()
         {
+            Console.WriteLine("Cups: " + player.pitcher.Cups);
             player.pitcher.DecramentCups();
         }
 
