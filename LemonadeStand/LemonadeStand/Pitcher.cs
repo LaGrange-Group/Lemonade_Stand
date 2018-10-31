@@ -41,11 +41,11 @@ namespace LemonadeStand
         }
         public void CreateLemonade()
         {
-            if(player.lemons.CheckForValidAmount(player.recipe.LemonsGet) == true && player.sugar.CheckForValidAmount(player.recipe.SugarGet) == true && player.ice.CheckForValidAmount(player.recipe.IceGet) == true && player.cups.CheckForValidAmount(12) == true)
+            if(player.lemons.CheckForValidAmount(player.recipe.LemonsGet) == true && player.sugar.CheckForValidAmount(player.recipe.SugarGet) == true && player.ice.CheckForValidAmount(player.recipe.IceGet * 12) == true && player.cups.CheckForValidAmount(12) == true)
             {
                 player.lemons.DecramentInventory(player.recipe.LemonsGet);
                 player.sugar.DecramentInventory(player.recipe.SugarGet);
-                player.ice.DecramentInventory(player.recipe.IceGet);
+                player.ice.DecramentInventory(player.recipe.IceGet * 12);
                 player.cups.DecramentInventory(12);
                 cupsInPitcher = 12;
                 SetTaste();
@@ -109,11 +109,11 @@ namespace LemonadeStand
         }
         private void AutoCreateNewPitcher()
         {
-            if (player.lemons.CheckForValidAmount(player.recipe.LemonsGet) == true && player.sugar.CheckForValidAmount(player.recipe.SugarGet) == true && player.ice.CheckForValidAmount(player.recipe.IceGet) == true && player.cups.CheckForValidAmount(12) == true)
+            if (player.lemons.CheckForValidAmount(player.recipe.LemonsGet) == true && player.sugar.CheckForValidAmount(player.recipe.SugarGet) == true && player.ice.CheckForValidAmount(player.recipe.IceGet * 12) == true && player.cups.CheckForValidAmount(12) == true)
             {
                 player.lemons.DecramentInventory(player.recipe.LemonsGet);
                 player.sugar.DecramentInventory(player.recipe.SugarGet);
-                player.ice.DecramentInventory(player.recipe.IceGet);
+                player.ice.DecramentInventory(player.recipe.IceGet * 12);
                 player.cups.DecramentInventory(12);
                 cupsInPitcher = 12;
             }

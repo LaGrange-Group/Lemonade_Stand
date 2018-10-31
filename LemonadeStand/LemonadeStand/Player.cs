@@ -18,6 +18,7 @@ namespace LemonadeStand
         private List<Inventory> inventory;
         private string name;
         private double preDayMoney;
+        public double totalProfit;
         public double PreDayMoney
         {
             get
@@ -41,6 +42,7 @@ namespace LemonadeStand
         }
         public void SetName()
         {
+            UI.DisplayGameInfo("welcome");
             Console.WriteLine("\nPlease enter your name..");
             name = Console.ReadLine();
         }
@@ -69,6 +71,10 @@ namespace LemonadeStand
             double diff = end - start;
             diff = (diff / start) * 100;
             return diff;
+        }
+        public void FindTotalProfit(double dayProfit)
+        {
+            totalProfit += dayProfit;
         }
     }
 }

@@ -33,6 +33,9 @@ namespace LemonadeStand
             if (player.pitcher.Cups < 0)
             {
                 choice = false;
+            }else if(player.pitcher.PriceOfGlass > 0.80 && weather.Temperature < 95)
+            {
+                choice = false;
             }
             else
             {

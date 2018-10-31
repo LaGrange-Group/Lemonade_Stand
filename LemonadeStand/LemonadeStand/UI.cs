@@ -99,7 +99,7 @@ namespace LemonadeStand
                 }
                 else
                 {
-                    Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n(4) to start simulation for day\n(5) to display previous days results + info " + game.currentDay);
+                    Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n(4) to start simulation for day\n(5) to display previous days results + info ");
                     switch (Convert.ToInt32(Console.ReadLine()))
                     {
                         case 1:
@@ -209,9 +209,9 @@ namespace LemonadeStand
                 return SetDaysToPlay();
             }
         }
-        public static void DisplayDayConclusion(double startingMoney, double endMoney, double percentDiff, int amountOfCustomers, int bought)
+        public static void DisplayDayConclusion(double startingMoney, double endMoney, double percentDiff, int amountOfCustomers, int bought, double totalProfit)
         {
-            Console.WriteLine("\nToday you had " + amountOfCustomers + " customers. Out of " + amountOfCustomers + ", " + bought + " decided to buy. " + "\nYou started the day with ${0:00.00}. You ended the day with ${1:00.00}. That is a {2:00.00}% difference!", startingMoney, endMoney, percentDiff);
+            Console.WriteLine("\nToday you had " + amountOfCustomers + " customers. Out of " + amountOfCustomers + ", " + bought + " decided to buy. " + "\nYou started the day with ${0:00.00}. You ended the day with ${1:00.00}. That is a {2:00.00}% difference!\nTotal profit made from lemonade stand: {3:00.00}" , startingMoney, endMoney, percentDiff, totalProfit);
         }
         private static void RestartOrQuit(Game game)
         {
@@ -245,12 +245,14 @@ namespace LemonadeStand
             switch (thisCase)
             {
                 case "welcome":
+                    Console.Clear();
                     Console.WriteLine("Welcome to Lemonade Stand!");
                     break;
                 case "main":
                     Console.WriteLine("--Main Menu--");
                     break;
                 case "continue":
+                    Console.WriteLine("\nThe rest of your ice has melted!\n");
                     Console.WriteLine("Are you ready to continue to the next day? (Hit enter to continue)");
                     Console.ReadLine();
                     break;
@@ -276,13 +278,58 @@ namespace LemonadeStand
         {
             Console.WriteLine("\n\n--Weather--\nWeather Condition: " + weather.DayCondition + "\nTemperature: " + weather.Temperature);
         }
-        public static void AskIfNeedRules()
+        public static void AskIfNeedRules(Game game)
         {
-
+            Console.WriteLine("\nWould you like to review the rules? (1) for yes || (2) for no");
+            try
+            {
+                switch (Convert.ToInt32(Console.ReadLine()))
+                {
+                    case 1:
+                        DisplayRules(game);
+                        break;
+                    case 2:
+                        return;
+                    default:
+                        DisplayInvalid();
+                        AskIfNeedRules(game);
+                        return;
+                }
+            }
+            catch
+            {
+                DisplayInvalid();
+                AskIfNeedRules(game);
+                return;
+            }
         }
-        private static void DisplayRules()
+        private static void DisplayRules(Game game)
         {
-
+            Console.Clear();
+            Console.WriteLine("--Rules--");
+            Console.WriteLine("\nLemonade stand is played by one or more players.\nEach player has an inventory consisting of: \nLemons\nSugar\nIce\nCups\nYou must create a recipe that will be used to create a pitcher of lemonade.\nOnce you have created your first pitcher, you can start\nthe simulation where customers will make a choice to purchase your \nlemonade based on the weather, cost of a glass, and quality of recipe.\nYou will choose how many days you would like to play.\nGood luck and have fun!");
+            Console.WriteLine("\n\nAre you ready to start? (1) to start || (2) to quit");
+            try
+            {
+                switch (Convert.ToInt32(Console.ReadLine()))
+                {
+                    case 1:
+                        return;
+                    case 2:
+                        Environment.Exit(0);
+                        return;
+                    default:
+                        DisplayInvalid();
+                        DisplayRules(game);
+                        break;
+                }
+            }
+            catch
+            {
+                DisplayInvalid();
+                DisplayRules(game);
+                return;
+            }
         }
     }
 }
