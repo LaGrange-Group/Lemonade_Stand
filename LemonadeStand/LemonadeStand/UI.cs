@@ -26,6 +26,7 @@ namespace LemonadeStand
                 Console.Clear();
                 DisplayGameInfo("dayresults");
                 StoredResults(game);
+                BackToMain(game);
             }
         }
         private static void StoredResults(Game game)
@@ -38,14 +39,28 @@ namespace LemonadeStand
                 }
                 Console.WriteLine("\n\n");
             }
+        }
+        private static void BackToMain(Game game)
+        {
             Console.WriteLine("\n(1) to go back to menu");
-            switch (Convert.ToInt32(Console.ReadLine()))
+            try
             {
-                case 1:
-                    game.ShowMenu();
-                    return;
-                default:
-                    break;
+                switch (Convert.ToInt32(Console.ReadLine()))
+                {
+                    case 1:
+                        game.ShowMenu();
+                        return;
+                    default:
+                        DisplayInvalid();
+                        StoredResults(game);
+                        return;
+                }
+            }
+            catch
+            {
+                DisplayInvalid();
+                StoredResults(game);
+                return;
             }
         }
         public static void DisplayGameEnd(Game game)
@@ -53,58 +68,69 @@ namespace LemonadeStand
             Console.Clear();
             DisplayGameInfo("endgame");
             StoredResults(game);
+            RestartOrQuit(game);
         }
         public static void PlayerActions(Player player, Store store, Game game, Day day)
         {
-            if (game.currentDay == 1)
+            try
             {
-                Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n\n(4) to start simulation for day " + game.currentDay);
-                switch (Convert.ToInt32(Console.ReadLine()))
+                if (game.currentDay == 1)
                 {
-                    case 1:
-                        store.EnterStore(game);
-                        break;
-                    case 2:
-                        player.SetRecipe(game);
-                        break;
-                    case 3:
-                        player.CreateLemonade(player.recipe, game);
-                        break;
-                    case 4:
-                        game.CheckIfReadyToSimulate();
-                        break;
-                    default:
-                        Console.WriteLine("You have entered an invalid input. Please try again.");
-                        PlayerActions(player, store, game, day);
-                        return;
+                    Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n\n(4) to start simulation for day " + game.currentDay);
+                    switch (Convert.ToInt32(Console.ReadLine()))
+                    {
+                        case 1:
+                            store.EnterStore(game);
+                            break;
+                        case 2:
+                            player.SetRecipe(game);
+                            break;
+                        case 3:
+                            player.CreateLemonade(player.recipe, game);
+                            break;
+                        case 4:
+                            game.CheckIfReadyToSimulate();
+                            break;
+                        default:
+                            Console.WriteLine("You have entered an invalid input. Please try again.");
+                            PlayerActions(player, store, game, day);
+                            return;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n(4) to start simulation for day\n(5) to display previous days results + info " + game.currentDay);
+                    switch (Convert.ToInt32(Console.ReadLine()))
+                    {
+                        case 1:
+                            store.EnterStore(game);
+                            break;
+                        case 2:
+                            player.SetRecipe(game);
+                            break;
+                        case 3:
+                            player.CreateLemonade(player.recipe, game);
+                            break;
+                        case 4:
+                            game.CheckIfReadyToSimulate();
+                            break;
+                        case 5:
+                            DisplayPastDayData(game);
+                            break;
+                        default:
+                            DisplayInvalid();
+                            PlayerActions(player, store, game, day);
+                            return;
+                    }
                 }
             }
-            else
+            catch
             {
-                Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n(4) to start simulation for day\n(5) to display previous days results + info " + game.currentDay);
-                switch (Convert.ToInt32(Console.ReadLine()))
-                {
-                    case 1:
-                        store.EnterStore(game);
-                        break;
-                    case 2:
-                        player.SetRecipe(game);
-                        break;
-                    case 3:
-                        player.CreateLemonade(player.recipe, game);
-                        break;
-                    case 4:
-                        game.CheckIfReadyToSimulate();
-                        break;
-                    case 5:
-                        DisplayPastDayData(game);
-                        break;
-                    default:
-                        Console.WriteLine("You have entered an invalid input. Please try again.");
-                        PlayerActions(player, store, game, day);
-                        return;
-                }
+                DisplayInvalid();
+                PlayerActions(player, store, game, day);
+                return;
             }
+
 
         }
         public static void DisplayStoreInfo(string thisCase)
@@ -173,7 +199,15 @@ namespace LemonadeStand
         public static int SetDaysToPlay()
         {
             Console.WriteLine("\nHow many days would you like to play for?");
-            return Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                return Convert.ToInt32(Console.ReadLine());
+            }
+            catch
+            {
+                DisplayInvalid();
+                return SetDaysToPlay();
+            }
         }
         public static void DisplayDayConclusion(double startingMoney, double endMoney, double percentDiff, int amountOfCustomers, int bought)
         {
@@ -182,17 +216,29 @@ namespace LemonadeStand
         private static void RestartOrQuit(Game game)
         {
             Console.WriteLine("\nWould you like to play again or exit? (1) for exit || (2) for replay");
-            switch (Convert.ToInt32(Console.ReadLine()))
+            try
             {
-                case 1:
-                    Environment.Exit(0);
-                    return;
-                case 2:
-                    game.StartGame();
-                    return;
-                default:
-                    break;
+                switch (Convert.ToInt32(Console.ReadLine()))
+                {
+                    case 1:
+                        Environment.Exit(0);
+                        return;
+                    case 2:
+                        game.StartGame();
+                        return;
+                    default:
+                        DisplayInvalid();
+                        RestartOrQuit(game);
+                        return;
+                }
             }
+            catch
+            {
+                DisplayInvalid();
+                RestartOrQuit(game);
+                return;
+            }
+
         }
         public static void DisplayGameInfo(string thisCase)
         {

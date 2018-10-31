@@ -8,5 +8,9 @@ namespace LemonadeStand
 {
     class Lemons : Inventory
     {
+        public Lemons()
+        {
+            name = "lemons";
+        }
     }
 }

@@ -8,5 +8,10 @@ namespace LemonadeStand
 {
     class Sugar : Inventory
     {
+        public Sugar()
+        {
+            name = "sugar";
+
+        }
     }
 }

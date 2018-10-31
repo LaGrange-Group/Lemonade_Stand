@@ -21,6 +21,7 @@ namespace LemonadeStand
         }
         public void StartGame()
         {
+            Console.Clear();
             player = new Player();
             store = new Store(player);
             day = new Day(player);
@@ -54,7 +55,6 @@ namespace LemonadeStand
         {
             day.DailyCustomers();
             CalculateForDayConclusion();
-
             CheckIfFinished();
         }
         private void CalculateForDayConclusion()

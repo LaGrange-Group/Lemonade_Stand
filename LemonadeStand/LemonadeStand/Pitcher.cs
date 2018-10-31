@@ -11,13 +11,13 @@ namespace LemonadeStand
         private Player player;
         private double priceOfGlass;
         private bool tasteQuality;
-        private int cups;
+        private int cupsInPitcher;
         public bool createdLemonade;
         public int Cups
         {
             get
             {
-                return cups;
+                return cupsInPitcher;
             }
         }
         public bool TasteQuality
@@ -41,12 +41,13 @@ namespace LemonadeStand
         }
         public void CreateLemonade()
         {
-            if(player.lemons.CheckForValidAmount(player.recipe.LemonsGet) == true && player.sugar.CheckForValidAmount(player.recipe.SugarGet) == true && player.ice.CheckForValidAmount(player.recipe.IceGet) == true)
+            if(player.lemons.CheckForValidAmount(player.recipe.LemonsGet) == true && player.sugar.CheckForValidAmount(player.recipe.SugarGet) == true && player.ice.CheckForValidAmount(player.recipe.IceGet) == true && player.cups.CheckForValidAmount(12) == true)
             {
                 player.lemons.DecramentInventory(player.recipe.LemonsGet);
                 player.sugar.DecramentInventory(player.recipe.SugarGet);
                 player.ice.DecramentInventory(player.recipe.IceGet);
-                cups = 12;
+                player.cups.DecramentInventory(12);
+                cupsInPitcher = 12;
                 SetTaste();
             }
             else
@@ -72,38 +73,49 @@ namespace LemonadeStand
         private void SetPrice()
         {
             Console.WriteLine("\nYou've made your first pitcher of the day! \n\nHow much would you like to charge per glass of your lemonade? (Ex. 0.25) min: 0.01 max: 100.00 ");
-            priceOfGlass = Convert.ToDouble(Console.ReadLine());
-            if (priceOfGlass >= 0.01 && priceOfGlass <= 100)
+            try
             {
-                createdLemonade = true;
-                return;
+                priceOfGlass = Convert.ToDouble(Console.ReadLine());
+                if (priceOfGlass >= 0.01 && priceOfGlass <= 100)
+                {
+                    createdLemonade = true;
+                    return;
+                }
+                else
+                {
+                    UI.DisplayInvalid();
+                    SetPrice();
+                    return;
+                }
             }
-            else
+            catch
             {
-                Console.WriteLine("\nYou have entered an invalid input. Please try again.");
+                UI.DisplayInvalid();
                 SetPrice();
                 return;
             }
+
         }
         public void DecramentCups()
         {
-            cups--;
+            cupsInPitcher--;
         }
         public void CheckAmountOfCupsLeftPerPitcher()
         {
-            if (cups == 0)
+            if (cupsInPitcher == 0)
             {
                 AutoCreateNewPitcher();
             }
         }
         private void AutoCreateNewPitcher()
         {
-            if (player.lemons.CheckForValidAmount(player.recipe.LemonsGet) == true && player.sugar.CheckForValidAmount(player.recipe.SugarGet) == true && player.ice.CheckForValidAmount(player.recipe.IceGet) == true)
+            if (player.lemons.CheckForValidAmount(player.recipe.LemonsGet) == true && player.sugar.CheckForValidAmount(player.recipe.SugarGet) == true && player.ice.CheckForValidAmount(player.recipe.IceGet) == true && player.cups.CheckForValidAmount(12) == true)
             {
                 player.lemons.DecramentInventory(player.recipe.LemonsGet);
                 player.sugar.DecramentInventory(player.recipe.SugarGet);
                 player.ice.DecramentInventory(player.recipe.IceGet);
-                cups = 12;
+                player.cups.DecramentInventory(12);
+                cupsInPitcher = 12;
             }
             else
             {

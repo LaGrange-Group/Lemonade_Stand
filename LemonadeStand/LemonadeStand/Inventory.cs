@@ -9,6 +9,7 @@ namespace LemonadeStand
     public abstract class Inventory
     {
         public int amount;
+        public string name;
         public Inventory()
         {
             amount = 15;
@@ -17,7 +18,7 @@ namespace LemonadeStand
         {
             if (amount < newAmount)
             {
-                Console.WriteLine("\nI'm sorry, you dont have enough of those items for that!");
+                Console.WriteLine("\nI'm sorry, you dont have enough " + name + " for that!");
                 return false;
             }
             else
