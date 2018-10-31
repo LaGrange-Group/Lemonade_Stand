@@ -19,32 +19,93 @@ namespace LemonadeStand
             PlayerActions(player, store, game, day);
             Console.ReadLine();
         }
-        public static void DisplayGameEnd()
+        private static void DisplayPastDayData(Game game)
         {
-
+            if (game.currentDay > 1)
+            {
+                Console.Clear();
+                DisplayGameInfo("dayresults");
+                StoredResults(game);
+            }
         }
-        public static void PlayerActions(Player player, Store store, Game game, Day day)
+        private static void StoredResults(Game game)
         {
-            Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n\n(4) to start simulation for day " + game.currentDay);
+            for (int i = 0; i < game.dayResultsData.Count; i++)
+            {
+                foreach (string data in game.dayResultsData[i])
+                {
+                    Console.Write(data);
+                }
+                Console.WriteLine("\n\n");
+            }
+            Console.WriteLine("\n(1) to go back to menu");
             switch (Convert.ToInt32(Console.ReadLine()))
             {
                 case 1:
-                    store.EnterStore(game);
-                    break;
-                case 2:
-                    player.SetRecipe(game);
-                    break;
-                case 3:
-                    player.CreateLemonade(player.recipe, game);
-                    break;
-                case 4:
-                    game.CheckIfReadyToSimulate();
-                    break;
-                default:
-                    Console.WriteLine("You have entered an invalid input. Please try again.");
-                    PlayerActions(player, store, game, day);
+                    game.ShowMenu();
                     return;
+                default:
+                    break;
             }
+        }
+        public static void DisplayGameEnd(Game game)
+        {
+            Console.Clear();
+            DisplayGameInfo("endgame");
+            StoredResults(game);
+        }
+        public static void PlayerActions(Player player, Store store, Game game, Day day)
+        {
+            if (game.currentDay == 1)
+            {
+                Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n\n(4) to start simulation for day " + game.currentDay);
+                switch (Convert.ToInt32(Console.ReadLine()))
+                {
+                    case 1:
+                        store.EnterStore(game);
+                        break;
+                    case 2:
+                        player.SetRecipe(game);
+                        break;
+                    case 3:
+                        player.CreateLemonade(player.recipe, game);
+                        break;
+                    case 4:
+                        game.CheckIfReadyToSimulate();
+                        break;
+                    default:
+                        Console.WriteLine("You have entered an invalid input. Please try again.");
+                        PlayerActions(player, store, game, day);
+                        return;
+                }
+            }
+            else
+            {
+                Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n(4) to start simulation for day\n(5) to display previous days results + info " + game.currentDay);
+                switch (Convert.ToInt32(Console.ReadLine()))
+                {
+                    case 1:
+                        store.EnterStore(game);
+                        break;
+                    case 2:
+                        player.SetRecipe(game);
+                        break;
+                    case 3:
+                        player.CreateLemonade(player.recipe, game);
+                        break;
+                    case 4:
+                        game.CheckIfReadyToSimulate();
+                        break;
+                    case 5:
+                        DisplayPastDayData(game);
+                        break;
+                    default:
+                        Console.WriteLine("You have entered an invalid input. Please try again.");
+                        PlayerActions(player, store, game, day);
+                        return;
+                }
+            }
+
         }
         public static void DisplayStoreInfo(string thisCase)
         {
@@ -118,6 +179,21 @@ namespace LemonadeStand
         {
             Console.WriteLine("\nToday you had " + amountOfCustomers + " customers. Out of " + amountOfCustomers + ", " + bought + " decided to buy. " + "\nYou started the day with ${0:00.00}. You ended the day with ${1:00.00}. That is a {2:00.00}% difference!", startingMoney, endMoney, percentDiff);
         }
+        private static void RestartOrQuit(Game game)
+        {
+            Console.WriteLine("\nWould you like to play again or exit? (1) for exit || (2) for replay");
+            switch (Convert.ToInt32(Console.ReadLine()))
+            {
+                case 1:
+                    Environment.Exit(0);
+                    return;
+                case 2:
+                    game.StartGame();
+                    return;
+                default:
+                    break;
+            }
+        }
         public static void DisplayGameInfo(string thisCase)
         {
             switch (thisCase)
@@ -131,6 +207,12 @@ namespace LemonadeStand
                 case "continue":
                     Console.WriteLine("Are you ready to continue to the next day? (Hit enter to continue)");
                     Console.ReadLine();
+                    break;
+                case "dayresult":
+                    Console.WriteLine("--Past Days Results--\n\n");
+                    break;
+                case "endgame":
+                    Console.WriteLine("--End of Game Results--\n\n");
                     break;
                 default:
                     break;
@@ -147,6 +229,14 @@ namespace LemonadeStand
         public static void DisplayWeather(Weather weather)
         {
             Console.WriteLine("\n\n--Weather--\nWeather Condition: " + weather.DayCondition + "\nTemperature: " + weather.Temperature);
+        }
+        public static void AskIfNeedRules()
+        {
+
+        }
+        private static void DisplayRules()
+        {
+
         }
     }
 }

@@ -11,20 +11,21 @@ namespace LemonadeStand
         private Day day;
         private Player player;
         private Store store;
-        private List<string> dayResultsData;
+        public List<List<string>> dayResultsData;
         public int amountOfDays;
         public int currentDay;
 
         public Game()
         {
-            player = new Player();
-            store = new Store(player);
-            day = new Day(player);
-            dayResultsData = new List<string>();
-            currentDay = 1;
+
         }
         public void StartGame()
         {
+            player = new Player();
+            store = new Store(player);
+            day = new Day(player);
+            dayResultsData = new List<List<string>>();
+            currentDay = 1;
             UI.DisplayGameInfo("welcome");
             player.SetName();
             amountOfDays = UI.SetDaysToPlay();
@@ -53,12 +54,19 @@ namespace LemonadeStand
         {
             day.DailyCustomers();
             CalculateForDayConclusion();
+
             CheckIfFinished();
         }
         private void CalculateForDayConclusion()
         {
             double percentDiff = player.FindWalletDifference(player.PreDayMoney, player.wallet.Money);
             UI.DisplayDayConclusion(player.PreDayMoney, player.wallet.Money ,percentDiff, day.amountOfCustomers, day.bought);
+            StoreData(player.PreDayMoney, player.wallet.Money, percentDiff, day.amountOfCustomers, day.bought);
+        }
+        private void StoreData(double startingMoney, double endingMoney, double percentDiff, int amountOfCustomers, int amountWhoBought)
+        {
+            List<string> result = new List<string>() {"--Day: " + currentDay + "--", "\nWeather condition: " + day.weather.DayCondition, "\nTemperature: " + day.weather.Temperature, "\nStarting money: " + startingMoney, "\nEnd of day money: " + endingMoney, "\nPercent money made or lost: " + percentDiff + " %", "\nAmount of customers: " + amountOfCustomers, "\nAmount of customers that bought: " + amountWhoBought};
+            dayResultsData.Add(result);
         }
         private void IncramentDay()
         {
@@ -68,7 +76,7 @@ namespace LemonadeStand
         {
             if (amountOfDays == currentDay)
             {
-                UI.DisplayGameEnd();
+                UI.DisplayGameEnd(this);
             }
             else
             {
@@ -84,8 +92,5 @@ namespace LemonadeStand
             ShowMenu();
             return;
         }
-
-
-
     }
 }
