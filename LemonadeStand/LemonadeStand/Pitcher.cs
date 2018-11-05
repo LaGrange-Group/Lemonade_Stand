@@ -43,10 +43,10 @@ namespace LemonadeStand
         {
             if(player.lemons.CheckForValidAmount(player.recipe.LemonsGet) == true && player.sugar.CheckForValidAmount(player.recipe.SugarGet) == true && player.ice.CheckForValidAmount(player.recipe.IceGet * 12) == true && player.cups.CheckForValidAmount(12) == true)
             {
-                player.lemons.DecramentInventory(player.recipe.LemonsGet);
-                player.sugar.DecramentInventory(player.recipe.SugarGet);
-                player.ice.DecramentInventory(player.recipe.IceGet * 12);
-                player.cups.DecramentInventory(12);
+                player.lemons.DecrementInventory(player.recipe.LemonsGet);
+                player.sugar.DecrementInventory(player.recipe.SugarGet);
+                player.ice.DecrementInventory(player.recipe.IceGet * 12);
+                player.cups.DecrementInventory(12);
                 cupsInPitcher = 12;
                 SetTaste();
             }
@@ -96,7 +96,7 @@ namespace LemonadeStand
             }
 
         }
-        public void DecramentCups()
+        public void DecrementCups()
         {
             cupsInPitcher--;
         }
@@ -111,10 +111,10 @@ namespace LemonadeStand
         {
             if (player.lemons.CheckForValidAmount(player.recipe.LemonsGet) == true && player.sugar.CheckForValidAmount(player.recipe.SugarGet) == true && player.ice.CheckForValidAmount(player.recipe.IceGet * 12) == true && player.cups.CheckForValidAmount(12) == true)
             {
-                player.lemons.DecramentInventory(player.recipe.LemonsGet);
-                player.sugar.DecramentInventory(player.recipe.SugarGet);
-                player.ice.DecramentInventory(player.recipe.IceGet * 12);
-                player.cups.DecramentInventory(12);
+                player.lemons.DecrementInventory(player.recipe.LemonsGet);
+                player.sugar.DecrementInventory(player.recipe.SugarGet);
+                player.ice.DecrementInventory(player.recipe.IceGet * 12);
+                player.cups.DecrementInventory(12);
                 cupsInPitcher = 12;
             }
             else

@@ -14,7 +14,6 @@ namespace LemonadeStand
         public List<List<string>> dayResultsData;
         public int amountOfDays;
         public int currentDay;
-        private int numOfPlayers;
 
         public Game()
         {

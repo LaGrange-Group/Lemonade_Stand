@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public abstract class Inventory
+    public abstract class Item
     {
         public int amount;
         public string name;
-        public Inventory()
+        public Item()
         {
             amount = 15;
         }
@@ -26,11 +26,11 @@ namespace LemonadeStand
                 return true;
             }
         }
-        public void IncramentInventory(int newAmount)
+        public void IncrementInventory(int newAmount)
         {
             amount += newAmount;
         }
-        public void DecramentInventory(int newAmount)
+        public void DecrementInventory(int newAmount)
         {
             amount -= newAmount;
         }

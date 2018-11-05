@@ -22,7 +22,7 @@ namespace LemonadeStand
         }
         private void SetName()
         {
-            System.Threading.Thread.Sleep(250);
+            System.Threading.Thread.Sleep(125);
             name = names[UI.random.Next(0, names.Count - 1)];
         }
 
@@ -54,12 +54,12 @@ namespace LemonadeStand
         }
         private void GiveMoney()
         {
-            player.wallet.IncramentMoney(player.pitcher.PriceOfGlass);
+            player.wallet.IncrementMoney(player.pitcher.PriceOfGlass);
         }
         private void TakeCup()
         {
             Console.WriteLine("Cups: " + player.pitcher.Cups);
-            player.pitcher.DecramentCups();
+            player.pitcher.DecrementCups();
         }
 
     }

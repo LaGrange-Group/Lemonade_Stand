@@ -20,7 +20,7 @@ namespace LemonadeStand
         {
             money = 40;
         }
-        public void IncramentMoney(double cost)
+        public void IncrementMoney(double cost)
         {
             money += cost;
         }

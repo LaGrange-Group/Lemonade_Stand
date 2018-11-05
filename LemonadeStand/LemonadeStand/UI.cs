@@ -68,7 +68,7 @@ namespace LemonadeStand
             Console.Clear();
             DisplayGameInfo("endgame");
             StoredResults(game);
-            RestartOrQuit(game);
+            RestartOrQuit(game, false);
         }
         public static void PlayerActions(Player player, Store store, Game game, Day day)
         {
@@ -99,7 +99,7 @@ namespace LemonadeStand
                 }
                 else
                 {
-                    Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n(4) to start simulation for day\n(5) to display previous days results + info ");
+                    Console.WriteLine("\n--Actions-- \n\n(1) to visit store\n(2) to set recipe\n(3) to create lemonade\n(4) to start simulation for day\n(5) to display previous days results + info\n\n(6) to quit");
                     switch (Convert.ToInt32(Console.ReadLine()))
                     {
                         case 1:
@@ -116,6 +116,11 @@ namespace LemonadeStand
                             break;
                         case 5:
                             DisplayPastDayData(game);
+                            break;
+                        case 6:
+                            Console.Clear();
+                            Console.WriteLine("!--Are you sure you want to quit?--!");
+                            RestartOrQuit(game, true);
                             break;
                         default:
                             DisplayInvalid();
@@ -213,31 +218,64 @@ namespace LemonadeStand
         {
             Console.WriteLine("\nToday you had " + amountOfCustomers + " customers. Out of " + amountOfCustomers + ", " + bought + " decided to buy. " + "\nYou started the day with ${0:00.00}. You ended the day with ${1:00.00}. That is a {2:00.00}% difference!\nTotal profit made from lemonade stand: {3:00.00}" , startingMoney, endMoney, percentDiff, totalProfit);
         }
-        private static void RestartOrQuit(Game game)
+        private static void RestartOrQuit(Game game, bool midGame)
         {
-            Console.WriteLine("\nWould you like to play again or exit? (1) for exit || (2) for replay");
-            try
+            if(midGame == false)
             {
-                switch (Convert.ToInt32(Console.ReadLine()))
+                Console.WriteLine("\nWould you like to play again or exit? (1) for exit || (2) for replay");
+                try
                 {
-                    case 1:
-                        Environment.Exit(0);
-                        return;
-                    case 2:
-                        game.StartGame();
-                        return;
-                    default:
-                        DisplayInvalid();
-                        RestartOrQuit(game);
-                        return;
+                    switch (Convert.ToInt32(Console.ReadLine()))
+                    {
+                        case 1:
+                            Environment.Exit(0);
+                            return;
+                        case 2:
+                            game.StartGame();
+                            return;
+                        default:
+                            DisplayInvalid();
+                            RestartOrQuit(game, false);
+                            return;
+                    }
+                }
+                catch
+                {
+                    DisplayInvalid();
+                    RestartOrQuit(game, false);
+                    return;
                 }
             }
-            catch
+            else
             {
-                DisplayInvalid();
-                RestartOrQuit(game);
-                return;
+                Console.WriteLine("\nWould you like to play again or exit? (1) for exit || (2) for replay || (3) to return to game");
+                try
+                {
+                    switch (Convert.ToInt32(Console.ReadLine()))
+                    {
+                        case 1:
+                            Environment.Exit(0);
+                            return;
+                        case 2:
+                            game.StartGame();
+                            return;
+                        case 3:
+                            game.ShowMenu();
+                            return;
+                        default:
+                            DisplayInvalid();
+                            RestartOrQuit(game, true);
+                            return;
+                    }
+                }
+                catch
+                {
+                    DisplayInvalid();
+                    RestartOrQuit(game, true);
+                    return;
+                }
             }
+
 
         }
         public static void DisplayGameInfo(string thisCase)

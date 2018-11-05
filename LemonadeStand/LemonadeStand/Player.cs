@@ -11,11 +11,11 @@ namespace LemonadeStand
         public Wallet wallet;
         public Pitcher pitcher;
         public Recipe recipe;
-        public Inventory lemons;
-        public Inventory sugar;
-        public Inventory ice;
-        public Inventory cups;
-        private List<Inventory> inventory;
+        public Item lemons;
+        public Item sugar;
+        public Item ice;
+        public Item cups;
+        private List<Item> inventory;
         private string name;
         private double preDayMoney;
         public double totalProfit;
@@ -33,11 +33,11 @@ namespace LemonadeStand
 
         public Player()
         {
-            inventory = new List<Inventory>();
-            inventory.Add(lemons = new Lemons());
+            inventory = new List<Item>();
+            inventory.Add(lemons = new Lemon());
             inventory.Add(sugar = new Sugar());
             inventory.Add(ice = new Ice());
-            inventory.Add(cups = new Cups());
+            inventory.Add(cups = new Cup());
             wallet = new Wallet();
         }
         public void SetName()

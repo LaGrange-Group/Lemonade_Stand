@@ -71,7 +71,7 @@ namespace LemonadeStand
                         if (player.wallet.CheckIfEnoughMoney(8) == true)
                         {
                             player.wallet.DecrementMoney(8);
-                            player.lemons.IncramentInventory(8);
+                            player.lemons.IncrementInventory(8);
                             Lemons();
                             return;
                         }
@@ -84,7 +84,7 @@ namespace LemonadeStand
                         if (player.wallet.CheckIfEnoughMoney(15) == true)
                         {
                             player.wallet.DecrementMoney(15);
-                            player.lemons.IncramentInventory(16);
+                            player.lemons.IncrementInventory(16);
                             Lemons();
                             return;
                         }
@@ -97,7 +97,7 @@ namespace LemonadeStand
                         if (player.wallet.CheckIfEnoughMoney(29) == true)
                         {
                             player.wallet.DecrementMoney(29);
-                            player.lemons.IncramentInventory(32);
+                            player.lemons.IncrementInventory(32);
                             Lemons();
                             return;
                         }
@@ -136,7 +136,7 @@ namespace LemonadeStand
                         if (player.wallet.CheckIfEnoughMoney(3) == true)
                         {
                             player.wallet.DecrementMoney(3);
-                            player.ice.IncramentInventory(50);
+                            player.ice.IncrementInventory(50);
                             Ice();
                             return;
                         }
@@ -149,7 +149,7 @@ namespace LemonadeStand
                         if (player.wallet.CheckIfEnoughMoney(6) == true)
                         {
                             player.wallet.DecrementMoney(6);
-                            player.ice.IncramentInventory(100);
+                            player.ice.IncrementInventory(100);
                             Ice();
                             return;
                         }
@@ -162,7 +162,7 @@ namespace LemonadeStand
                         if (player.wallet.CheckIfEnoughMoney(10) == true)
                         {
                             player.wallet.DecrementMoney(10);
-                            player.ice.IncramentInventory(200);
+                            player.ice.IncrementInventory(200);
                             Ice();
                             return;
                         }
@@ -201,7 +201,7 @@ namespace LemonadeStand
                         if (player.wallet.CheckIfEnoughMoney(3) == true)
                         {
                             player.wallet.DecrementMoney(3);
-                            player.cups.IncramentInventory(20);
+                            player.cups.IncrementInventory(20);
                             Cups();
                             return;
                         }
@@ -214,7 +214,7 @@ namespace LemonadeStand
                         if (player.wallet.CheckIfEnoughMoney(5) == true)
                         {
                             player.wallet.DecrementMoney(5);
-                            player.cups.IncramentInventory(40);
+                            player.cups.IncrementInventory(40);
                             Cups();
                             return;
                         }
@@ -227,7 +227,7 @@ namespace LemonadeStand
                         if (player.wallet.CheckIfEnoughMoney(10) == true)
                         {
                             player.wallet.DecrementMoney(10);
-                            player.cups.IncramentInventory(100);
+                            player.cups.IncrementInventory(100);
                             Cups();
                             return;
                         }
@@ -266,7 +266,7 @@ namespace LemonadeStand
                         if (player.wallet.CheckIfEnoughMoney(8) == true)
                         {
                             player.wallet.DecrementMoney(8);
-                            player.sugar.IncramentInventory(4);
+                            player.sugar.IncrementInventory(4);
                             Sugar();
                             return;
                         }
@@ -279,7 +279,7 @@ namespace LemonadeStand
                         if (player.wallet.CheckIfEnoughMoney(23) == true)
                         {
                             player.wallet.DecrementMoney(23);
-                            player.sugar.IncramentInventory(16);
+                            player.sugar.IncrementInventory(16);
                             Sugar();
                             return;
                         }
@@ -292,7 +292,7 @@ namespace LemonadeStand
                         if (player.wallet.CheckIfEnoughMoney(43) == true)
                         {
                             player.wallet.DecrementMoney(43);
-                            player.sugar.IncramentInventory(32);
+                            player.sugar.IncrementInventory(32);
                             Sugar();
                             return;
                         }
